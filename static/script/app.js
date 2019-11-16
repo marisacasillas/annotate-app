@@ -1,5 +1,4 @@
 (function() {
-  var smReady = function() {};
   var unloadSound = function() {};
 
   if (document.getElementById('annotate')) {
@@ -16,20 +15,23 @@
 
     var source = playerEl.getAttribute('data-source');
     var sound = {};
-    var togglePlay;
 
     function updateProgressDisplay(percentDone) {
-      percentDone = Math.round(100 * percentDone) + '%';
+      percentDone = ((100 * percentDone) || 0) + '%';
       progressEl.style.width = percentDone;
     }
 
     playpauseEl.addEventListener('click', function() {
-      sound.togglePause();
+      if (sound.playing()) {
+        sound.pause();
+      } else {
+        sound.play();
+      }
     });
 
     resetEl.addEventListener('click', function() {
-      if (sound.duration > 0) {
-        sound.setPosition(0);
+      if (sound.duration() > 0) {
+        sound.seek(0);
         updateProgressDisplay(0.0);
       }
     });
@@ -47,50 +49,51 @@
       }
     });
 
-    smReady = function() {
-      sound = soundManager.createSound({
+    setupSound = function() {
+      sound = new Howl({
         id: 'recording',
-        url: source,
-        autoPlay: true,
-        onload: function() {
-          duration = sound.duration;
-        },
-        onerror: function(code, description) {
-          console.log(code, description);
-          if (this.loaded) {
-            this.stop();
-          }
+        src: [source],
+        autoplay: true,
+        onplayerror: function(soundId, message) {
+          sound.pause();
+          sound.once('unlock', function() {
+            sound.play();
+          });
         },
         onplay: function() {
           playpauseEl.className = 'icon-pause';
-        },
-        onresume: function() {
-          playpauseEl.className = 'icon-pause';
+          requestAnimationFrame(updateProgress);
         },
         onpause: function() {
           playpauseEl.className = 'icon-play';
         },
-        onfinish: function() {
+        onstop: function() {
           playpauseEl.className = 'icon-play';
         },
-        whileplaying: function() {
-          var percentDone = sound.position / sound.duration;
-          if (!isNaN(percentDone)) {
-            updateProgressDisplay(percentDone);
-          }
-        }
+        onend: function() {
+          playpauseEl.className = 'icon-play';
+        },
       });
+
+      function updateProgress() {
+        var position = sound.seek() || 0;
+        var duration = sound.duration();
+        var percentDone = position / duration;
+        if (!isNaN(percentDone)) {
+          updateProgressDisplay(percentDone);
+        }
+        if (sound.playing()) {
+          requestAnimationFrame(updateProgress);
+        }
+      }
 
       unloadSound = function() {
         sound.unload();
       }
     };
 
-    if (window.soundManager) {
-      soundManager.setup({
-        url: 'static/swf/',
-        onready: smReady
-      });
+    if (window.Howl) {
+      setupSound();
     }
   }
 

@@ -5,8 +5,8 @@
     </head>
     <body>
         {{!base}}
-        % if defined('soundmanager'):
-        <script src="/static/script/soundmanager2-nodebug-jsmin.js"></script>
+        % if defined('audio'):
+        <script src="/static/script/howler.min.js"></script>
         % end
         <script src="/static/script/app.js"></script>
     </body>

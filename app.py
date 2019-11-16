@@ -97,7 +97,7 @@ def annotate_get(fileid):
     if 'current' not in context:
         btl.redirect('/annotate')
     return {
-        'soundmanager': True,
+        'audio': True,
         'stats': files.user_stats(name),
         'context': context
     }
