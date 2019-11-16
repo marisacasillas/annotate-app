@@ -1,3 +1,10 @@
+# We're just using pipenv for dependency management, so we don't want to commit
+# the lock file.
+Pipfile.lock
+
+# Usual python ignores
 *.pyc
+
+# These are per-installation.
 var/backups/*.db
 var/database.db
