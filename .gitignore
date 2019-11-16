@@ -1,0 +1,3 @@
+*.pyc
+var/backups/*.db
+var/database.db
