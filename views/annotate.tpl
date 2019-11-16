@@ -10,8 +10,8 @@
   <form method="post" id="annotation-form">
     <div id="player"
      data-source="/static/snippets/{{context['current'].name}}.mp3">
-      <span id="playpause" class="icon-play"></span>
-      <span id="reset" class="icon-first"></span>
+      <button type="button" id="playpause"><span class="icon-play"></span></button>
+      <button type="button" id="reset"><span class="icon-first"></span></button>
       <div id="progress-bar"><div id="progress"></div></div>
     </div>
 

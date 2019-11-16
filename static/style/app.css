@@ -204,6 +204,8 @@ a.button:visited {
   display: block;
   width: 30px;
   height: 30px;
+  border-radius: 0;
+  padding: 0;
   margin-right: 1px;
   background-color: #AAAAAA;
   line-height: 30px;
