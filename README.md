@@ -18,6 +18,10 @@ Once a batch of annotation is initiated and the application is up and running (s
 
 _Note: This application was built for use with Spanish speakers, so the action labels and default user names are in Spanish (this can be easily changed; see [Language settings](#markdown-header-language-settings) below)._
 
+_Figure 1._ Screen shot of an annotation being made by `usuario2`.
+
+![Screen shot of an annotation being made by `usuario2`.](example-screenshot.png)
+
 ## Getting started
 
 **Install the annotate-app**
@@ -91,6 +95,9 @@ strings:
 - users
 - progress updates
 - empezar anotaciones, salir, próximo, último
+
+## Desktop use
+[to be filled in!]
 
 
 ## Authorship and conditions of use
