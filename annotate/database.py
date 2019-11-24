@@ -1,11 +1,14 @@
+import csv
 import itertools
 import os
 import shutil
 import sqlite3
+
 from datetime import datetime
 from glob import iglob
 
 from .config import DB_FILE, DB_BACKUP_DIR, MP3_GLOB, USERS
+from .files import iter_files
 
 
 def user_exists(name):
@@ -58,6 +61,15 @@ def backup_database():
     backup_file = '{}.db'.format(datetime.now().strftime('%Y-%m-%d-%H%M'))
     backup_path = os.path.join(DB_BACKUP_DIR, backup_file)
     shutil.copyfile(DB_FILE, backup_path)
+
+
+def export_files_to_csv(fh):
+    writer = csv.writer(fh)
+    writer.writerow(['user', 'complete', 'completed_at',
+        'filename', 'annotation'])
+    for f in iter_files():
+        r = [f.user, int(f.complete), f.completed_at, f.name, f.annotation]
+        writer.writerow(r)
 
 
 def chunk_iter(itr, size):

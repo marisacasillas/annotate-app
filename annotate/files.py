@@ -28,10 +28,21 @@ class File(object):
             self.user = user
 
 
+def iter_files():
+    with dbconn() as db:
+        q = """
+            SELECT f.*, u.`name` AS `user`
+            FROM `files` f
+            LEFT JOIN `users` u ON u.`id` = f.`userid`
+        """
+        for r in db.execute(q):
+            yield File(r)
+
+
 def load_file(fileid):
     with dbconn() as db:
         q = """
-            SELECT *, u.`name` AS `user`
+            SELECT f.*, u.`name` AS `user`
             FROM `files` f
             LEFT JOIN `users` u ON u.`id` = f.`userid`
             WHERE f.`id` = ?
