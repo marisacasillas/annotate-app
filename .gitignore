@@ -5,9 +5,6 @@ Pipfile.lock
 # Usual python ignores
 *.pyc
 
-# Don't include compiled message files
-*.mo
-
 # These are per-installation.
 var/backups/*.db
 var/database.db
