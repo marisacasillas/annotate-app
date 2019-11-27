@@ -12,13 +12,17 @@
 LOCALE=./locale
 
 main() {
-  local cmd="${1:-compile}"
+  local cmd="${1:-build}"
   case "$cmd" in
     extract) extract ;;
     compile) compile ;;
+    build) extract; compile ;;
+    init) shift; initialize "$@" ;;
   esac
 }
 
+# Extract messages from application views into the main messages.pot, then
+# merge them into each locale.
 extract() {
   local messages="$LOCALE/messages.pot"
   local new_messages="$LOCALE/messages.new.pot"
@@ -53,11 +57,42 @@ merge-translations() {
   done
 }
 
+# Compile .po files into .mo files for each locale.
 compile() {
   list-translations | while read po; do
     local mo="${po%.po}.mo"
     msgfmt --output-file "$mo" "$po"
   done
+}
+
+# Initialize a new translation (i.e., a new locale).
+initialize() {
+  local code="$1"
+  if [ -e "$code" ]; then
+    echo "Missing new language code (e.g., 'es', 'en', ...)"
+    exit 1
+  fi
+
+  if [ -d "$LOCALE/$code" ]; then
+    echo "Language '$code' already initialized"
+    exit 1
+  fi
+
+  local new_language_dir="$LOCALE/$code/LC_MESSAGES"
+  local new_po="$new_language_dir/messages.po"
+
+  mkdir -p "$new_language_dir"
+  msginit \
+    --input "$LOCALE/messages.pot" \
+    --output-file "$new_po" \
+    --locale "$code" \
+    --no-translator
+
+  # Remove fields we don't care about.
+  sed -E \
+    -i'' \
+    -e '/^"(Report-Msgid|Project|Last-Translator|Language-Team)/d' \
+    "$new_po"
 }
 
 main "$@"
