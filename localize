@@ -33,7 +33,7 @@ extract() {
 }
 
 list-application-files() {
-  find ./views/ -name '*.tpl'
+  find ./views -name '*.tpl'
 }
 
 merge-messages() {
