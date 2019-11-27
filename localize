@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+# Helpful guides:
+# https://www.labri.fr/perso/fleury/posts/programming/a-quick-gettext-tutorial.html
+# https://phrase.com/blog/posts/translate-python-gnu-gettext/
+
+# On MacOS with Homebrew-installed gettext:
+# export PATH="/usr/local/opt/gettext/bin:$PATH"
+# OR:
+# brew link --force gettext
+
+LOCALE=./locale
+
+main() {
+  local cmd="${1:-compile}"
+  case "$cmd" in
+    extract) extract ;;
+    compile) compile ;;
+  esac
+}
+
+extract() {
+  local messages="$LOCALE/messages.pot"
+  local new_messages="$LOCALE/messages.new.pot"
+  xgettext \
+    --language Python \
+    --from-code UTF-8 \
+    --files-from  <(list-application-files) \
+    --output "$new_messages"
+  merge-messages "$messages" "$new_messages"
+  list-translations | merge-translations "$messages"
+  rm -f "$new_messages"
+}
+
+list-application-files() {
+  find ./views/ -name '*.tpl'
+}
+
+merge-messages() {
+  local old_po="$1"
+  local new_po="$2"
+  msgmerge --update "$old_po" "$new_po" 2>/dev/null
+}
+
+list-translations() {
+  find "$LOCALE" -name '*.po'
+}
+
+merge-translations() {
+  local new_messages="$1"
+  while read po; do
+    merge-messages "$po" "$new_messages"
+  done
+}
+
+compile() {
+  list-translations | while read po; do
+    local mo="${po%.po}.mo"
+    msgfmt --output-file "$mo" "$po"
+  done
+}
+
+main "$@"

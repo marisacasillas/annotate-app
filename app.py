@@ -4,8 +4,11 @@ import bottle as btl
 from bottle import request, response, redirect
 from beaker.middleware import SessionMiddleware
 
+import gettext
+
 import annotate
 import annotate.files as files
+import annotate.config as config
 
 session_opts = {
     'session.type': 'cookie',
@@ -16,7 +19,14 @@ session_opts = {
     'session.auto': True,
 }
 
+locale = gettext.translation('messages', 'locale', languages=config.LANGUAGES)
+locale.install()
+
 app = btl.Bottle()
+
+btl.BaseTemplate.defaults.update({
+    '_': locale.gettext
+})
 
 wsgi_app = SessionMiddleware(app, session_opts)
 

@@ -1,8 +1,16 @@
-% rebase('base.tpl', title="Anotar")
+% msg_comleted_today = _('Completed Today')
+% msg_remaining = _('Remaining')
+% msg_annotation = _('Annotation')
+% msg_enter_annotation = _('Enter an annotation above')
+% msg_next = _('Next')
+% msg_prev = _('Previous')
+% msg_exit = _('Exit')
+
+% rebase('base.tpl', title=_("Annotate"))
 <div class="panel" id="annotate">
   <table id="stats">
-    <tr><td>{{stats['user_today']}}</td><td>TERMINASTE HOY</td></tr>
-    <tr><td>{{stats['remaining']}}</td><td>A HACER</td></tr>
+    <tr><td>{{stats['user_today']}}</td><td>{{msg_comleted_today}}</td></tr>
+    <tr><td>{{stats['remaining']}}</td><td>{{msg_remaining}}</td></tr>
   </table>
 
   <p id="current">{{context['current'].name}}</p>
@@ -15,19 +23,19 @@
       <div id="progress-bar"><div id="progress"></div></div>
     </div>
 
-    <textarea id="annotation" name="annotation" placeholder="Anotación..."
+    <textarea id="annotation" name="annotation" placeholder="{{msg_annotation}}&hellip;"
      autofocus>{{context['current'].annotation}}</textarea>
 
     <p id="error-empty" class="error hidden"
-     >Tecla una anotación arriba</p>
+     >{{msg_enter_annotation}}</p>
 
-    <input type="submit" class="button" id="next" value="PRÓXIMO">
+    <input type="submit" class="button" id="next" value="{{msg_next}}">
   </form>
 
   % if 'prev' in context:
     <a href="/annotate/{{context['prev'].id}}"
-     class="button" id="prev">ÚLTIMO</a>
+     class="button" id="prev">{{msg_prev}}</a>
   % end
 
-  <a href="/logout" class="button" id="exit">SALIR</a>
+  <a href="/logout" class="button" id="exit">{{msg_exit}}</a>
 </div>
