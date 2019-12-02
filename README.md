@@ -36,13 +36,6 @@ cd annotate-app
 pipenv install
 ```
 
-Note that if you do not yet have pipenv installed, you might get an error here. To install try:
-
-```sh
-# if you have trouble with this command, try preceding it with 'sudo', as in sudo pip install pipenv
-pip install pipenv
-```
-
 **Copy the batch of audio clips you want to annotate into `annotate-app/static/snippets/`**
 
 ```sh
@@ -77,10 +70,9 @@ Point your browser at [`http://localhost:8080/login`](). The default user names 
 Annotations are stored in a database file in `annotate-app/var/`. Use the `db2csv.py` script to convert this file into a CSV and then inspect as you normally would (in R, Excel, etc.). We recommend using a file name that reflects the date and time of your file conversion.
 
 ```sh
-# Convert the database file into a CSV
-# arguments: [PATH_TO_DB] [PATH_FOR_NEW_CSV]
-./db2csv.py var/database.db var/converted_dbs/annotate_database_TIMESTAMP.csv
-
+# Convert the current database file into a CSV
+./db2csv.py
+# The CSV will be written with a timestamped name to the annotate-app directory
 ```
 
 ## Key commands
