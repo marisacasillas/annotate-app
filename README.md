@@ -36,12 +36,20 @@ cd annotate-app
 pipenv install
 ```
 
+Note that if you do not yet have pipenv installed, you might get an error here. To install try:
+
+```sh
+# if you have trouble with this command, try preceding it with 'sudo', as in sudo pip install pipenv
+pip install pipenv
+```
+
 **Copy the batch of audio clips you want to annotate into `annotate-app/static/snippets/`**
 
 ```sh
 # Copy some sound files to annotate into static/snippets.
 cp YOUR_FILES_HERE static/snippets/
 ```
+
 Make sure the directory _only_ contains sound files that you want to annotate.
 
 **Initialize the database of audio clip annotations**
