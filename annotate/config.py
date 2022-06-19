@@ -8,8 +8,6 @@ DB_FILE = path.join('var', 'database.db')
 DB_BACKUP_DIR = path.join('var', 'backups')
 BACKUP_EVERY_N = 500
 
-MP3_GLOB = path.join('static', 'snippets', '*.mp3')
-
 USERS = set([u'usuario1', u'usuario2'])
 
 # A priority list of languages to use for UI messages. The first language for
