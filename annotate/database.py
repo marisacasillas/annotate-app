@@ -41,6 +41,7 @@ def create_database(transcription_csv_path):
             `addressee` CHARACTER(1) NOT NULL DEFAULT 'C',
             `checked` BOOL NOT NULL DEFAULT 0,
             `checked_at` TIMESTAMP,
+            `saved_at` TIMESTAMP,
             `userid` INTEGER REFERENCES `users` (`id`)
                 ON DELETE SET NULL ON UPDATE SET NULL
         )""")
@@ -83,14 +84,14 @@ def backup_database():
 
 def export_files_to_csv(fh):
     writer = csv.writer(fh)
-    writer.writerow(['user', 'checked', 'checked_at', 'filename', 'transcription', 'word',
-        'audio_quality', 'onset_accuracy', 'offset_accuracy', 'word_present', 'correct_wordform',
-        'speaker', 'addressee',
+    writer.writerow(['user', 'checked', 'checked_at', 'saved_at', 'filename', 'transcription',
+        'word', 'audio_quality', 'onset_accuracy', 'offset_accuracy', 'word_present',
+        'correct_wordform', 'speaker', 'addressee',
         ])
     for f in iter_files():
-        r = [f.user, f.checked, f.checked_at, f.name, f.transcription, f.word, f.audio_quality,
-                f.onset_accuracy, f.offset_accuracy, f.word_present, f.correct_wordform, f.speaker,
-                f.addressee]
+        r = [f.user, f.checked, f.checked_at, f.saved_at, f.name, f.transcription, f.word,
+                f.audio_quality, f.onset_accuracy, f.offset_accuracy, f.word_present,
+                f.correct_wordform, f.speaker, f.addressee]
         writer.writerow(r)
 
 

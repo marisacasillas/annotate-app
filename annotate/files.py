@@ -19,6 +19,7 @@ class File(object):
         self.addressee = row['addressee']
         self.checked = int(row['checked'])
         self.checked_at = row['checked_at']
+        self.saved_at = row['saved_at']
         self.user = row['user']
 
     def save(self, user):
@@ -38,6 +39,7 @@ class File(object):
                     addressee = ?,
                     checked = ?,
                     checked_at = {update_checked_at},
+                    saved_at = datetime('now', 'localtime'),
                     userid = (SELECT `id` FROM `users` WHERE `name` = ?)
                 WHERE `id` = ?
             """
