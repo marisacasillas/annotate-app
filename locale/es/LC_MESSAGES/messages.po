@@ -2,11 +2,93 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 12:28+0100\n"
+"POT-Creation-Date: 2022-06-19 17:11-0500\n"
 "Language: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: views/annotate.tpl:1 views/logged_in.tpl:1
+msgid "Completed Today"
+msgstr "Terminaste Hoy"
+
+#: views/annotate.tpl:2 views/logged_in.tpl:3
+msgid "Remaining"
+msgstr "A Hacer"
+
+#: views/annotate.tpl:3
+msgid "Transcription"
+msgstr ""
+
+#: views/annotate.tpl:4
+msgid "Word"
+msgstr ""
+
+#: views/annotate.tpl:5
+msgid "Save"
+msgstr ""
+
+#: views/annotate.tpl:6
+msgid "and"
+msgstr ""
+
+#: views/annotate.tpl:7 views/logged_in.tpl:5
+msgid "Exit"
+msgstr "Salir"
+
+#: views/annotate.tpl:10
+msgid "Audio Quality"
+msgstr ""
+
+#: views/annotate.tpl:11
+msgid "Onset Accuracy"
+msgstr ""
+
+#: views/annotate.tpl:12
+msgid "Offset Accuracy"
+msgstr ""
+
+#: views/annotate.tpl:13
+msgid "Word Present"
+msgstr ""
+
+#: views/annotate.tpl:14
+msgid "Correct Wordform"
+msgstr ""
+
+#: views/annotate.tpl:15
+msgid "Speaker"
+msgstr ""
+
+#: views/annotate.tpl:16
+msgid "Addressee"
+msgstr ""
+
+#: views/annotate.tpl:17
+msgid "Checked"
+msgstr ""
+
+#: views/annotate.tpl:21
+#, fuzzy
+msgid "Skip Previous"
+msgstr "Último"
+
+#: views/annotate.tpl:22
+msgid "Previous"
+msgstr "Último"
+
+#: views/annotate.tpl:23
+msgid "Next"
+msgstr "Próximo"
+
+#: views/annotate.tpl:24
+#, fuzzy
+msgid "Skip Next"
+msgstr "Próximo"
+
+#: views/annotate.tpl:29
+msgid "Annotate"
+msgstr "Anotar"
 
 #: views/login.tpl:1
 msgid "Username"
@@ -20,46 +102,14 @@ msgstr "Entrar"
 msgid "Enter a valid username"
 msgstr "Entra un nombre de usuario válido"
 
-#: views/logged_in.tpl:1 views/annotate.tpl:1
-msgid "Completed Today"
-msgstr "Terminaste Hoy"
-
 #: views/logged_in.tpl:2
 msgid "Completed Total"
 msgstr "Has Terminado en Total"
-
-#: views/logged_in.tpl:3 views/annotate.tpl:2
-msgid "Remaining"
-msgstr "A Hacer"
 
 #: views/logged_in.tpl:4
 msgid "Begin Annotating"
 msgstr "Empezar Anotaciones"
 
-#: views/logged_in.tpl:5 views/annotate.tpl:7
-msgid "Exit"
-msgstr "Salir"
-
 #: views/logged_in.tpl:7
 msgid "Work Summary"
 msgstr "Sumario de Trabajo"
-
-#: views/annotate.tpl:3
-msgid "Annotation"
-msgstr "Anotación"
-
-#: views/annotate.tpl:4
-msgid "Enter an annotation above"
-msgstr "Tecla una anotación arriba"
-
-#: views/annotate.tpl:5
-msgid "Next"
-msgstr "Próximo"
-
-#: views/annotate.tpl:6
-msgid "Previous"
-msgstr "Último"
-
-#: views/annotate.tpl:9
-msgid "Annotate"
-msgstr "Anotar"

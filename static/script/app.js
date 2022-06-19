@@ -2,18 +2,18 @@
   if (document.getElementById('annotate')) {
     var player = setupPlayer();
     setupInteractions(player);
-    disallowEmptyAnnotation(player);
+    setupSubmit(player);
   }
 
   function setupPlayer() {
-    var playerEl = document.getElementById('player');
-    var playpauseEl = document.getElementById('playpause');
-    var playpauseIcon = playpauseEl.querySelector('span');
-    var resetEl = document.getElementById('reset');
-    var progressBarEl = document.getElementById('progress-bar');
-    var progressEl = document.getElementById('progress');
+    var $player = document.getElementById('player');
+    var $playpause = document.getElementById('playpause');
+    var playpauseIcon = $playpause.querySelector('span');
+    var $reset = document.getElementById('reset');
+    var $progressBar = document.getElementById('progress-bar');
+    var $progress = document.getElementById('progress');
 
-    var source = playerEl.getAttribute('data-source');
+    var source = $player.getAttribute('data-source');
     var sound;
     var interface = new EventTarget();
 
@@ -46,7 +46,7 @@
 
     function updateProgressDisplay(percentDone) {
       percentDone = ((100 * percentDone) || 0) + '%';
-      progressEl.style.width = percentDone;
+      $progress.style.width = percentDone;
     }
 
     function unloadSound() {
@@ -62,11 +62,6 @@
         sound.once('unlock', function() {
           sound.play();
         });
-      },
-      onload: function() {
-        if (!sound.playing()) {
-          playpauseEl.focus();
-        }
       },
       onplay: function() {
         playpauseIcon.className = 'icon-pause';
@@ -84,12 +79,12 @@
       },
     });
 
-    playpauseEl.addEventListener('click', togglePlay);
-    resetEl.addEventListener('click', seekToBeginning);
+    $playpause.addEventListener('click', togglePlay);
+    $reset.addEventListener('click', seekToBeginning);
 
-    progressBarEl.addEventListener('click', function(ev) {
+    $progressBar.addEventListener('click', function(ev) {
       var clickX = ev.clientX;
-      var bounds = progressBarEl.getBoundingClientRect();
+      var bounds = $progressBar.getBoundingClientRect();
       var left = bounds.left + window.scrollX;
       var right = bounds.right + window.scrollX;
       var pos = (clickX - left) / (right - left);
@@ -107,55 +102,54 @@
   }
 
   function setupInteractions(player) {
-    var prevBtn = document.querySelector('#prev');
-    var nextBtn = document.querySelector('#next');
-    var textareaEl = document.querySelector('#annotation');
+    var $prev = document.querySelector('#prev');
+    var $save = document.querySelector('#save');
+    var $quality = document.querySelector('[name="audio_quality"]')
+    var $onset = document.querySelector('[name="onset_accuracy"]')
+    var $offset = document.querySelector('[name="offset_accuracy"]')
+    var $present = document.querySelector('[name="word_present"]')
+    var $wordform = document.querySelector('[name="correct_wordform"]')
+    var $speaker = document.querySelector('[name="speaker"]')
+    var $addressee = document.querySelector('[name="addressee"]')
+    var $checked = document.querySelector('[name="checked"]')
+
+    function focus(el) {
+      if (el.focus) {
+        el.focus();
+      }
+    }
 
     document.addEventListener('keyup', function(ev) {
       var key = ev.key.toLowerCase();
-
-      if (ev.target && ev.target.tagName == 'TEXTAREA') {
-        if (key == 'escape') {
-          nextBtn.focus();
-        }
-        return;
-      }
-
       switch (key) {
         case '/': player.togglePlay(); break;
+        case 'q': focus($quality); break;
+        case 'n': focus($onset); break;
+        case 'f': focus($offset); break;
+        case 'p': focus($present); break;
+        case 'w': focus($wordform); break;
+        case 's': focus($speaker); break;
+        case 'd': focus($addressee); break;
+        case 'x': focus($checked); break;
         case 'arrowleft':
           if (ev.shiftKey) {
-            prevBtn.click();
+            $prev.click();
           } else {
             player.seekToBeginning();
           }
           break;
-        case 'arrowright':
-          if (ev.shiftKey) {
-            nextBtn.click();
+        case 'enter':
+          if (ev.ctrlKey) {
+            $save.click();
           }
           break;
-        case 't': textareaEl.focus(); break;
       }
-    });
-
-    // Automatically focus the text area any time we start playing.
-    player.addEventListener('play', function() {
-      textareaEl.focus();
     });
   }
 
-  function disallowEmptyAnnotation(player) {
-    var formEl = document.getElementById('annotation-form');
-    var textareaEl = document.getElementById('annotation');
-    var errorEl = document.getElementById('error-empty');
-
-    formEl.onsubmit = function() {
-      if (textareaEl.value.trim() == '') {
-        errorEl.classList.remove('hidden');
-        textareaEl.focus();
-        return false;
-      }
+  function setupSubmit(player) {
+    var $form = document.getElementById('annotation-form');
+    $form.onsubmit = function() {
       // Kill the buffering sound before we try to submit.
       player.unloadSound();
     };

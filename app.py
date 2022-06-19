@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
-import bottle as btl
-from bottle import request, response, redirect
 from beaker.middleware import SessionMiddleware
+from bottle import request, response, redirect
+import bottle as btl
 
 import gettext
 
+from annotate.choice import Choice
 import annotate
-import annotate.files as files
 import annotate.config as config
+import annotate.files as files
+
 
 session_opts = {
     'session.type': 'cookie',
@@ -89,7 +91,7 @@ def annotate_next():
     name = session.get('name')
     if name is None:
         btl.redirect('/login')
-    next_file = files.next_incomplete()
+    next_file = files.next_unchecked(0)
     if next_file is None:
         btl.redirect('/logged-in')
     else:
@@ -104,12 +106,26 @@ def annotate_get(fileid):
     if name is None:
         btl.redirect('/login')
     context = files.around(fileid)
-    if 'current' not in context:
+    if context['current'] is None:
         btl.redirect('/annotate')
+    context['skip_prev'] = next_file_by_mode(fileid, 'skip_prev')
+    context['skip_next'] = next_file_by_mode(fileid, 'skip_next')
     return {
         'audio': True,
         'stats': files.user_stats(name),
-        'context': context
+        'context': context,
+        'choices': [
+            Choice('audio_quality', options=['1', '2', '3', '0']),
+            Choice('onset_accuracy', options=['1', '2', '3', '0']),
+            Choice('offset_accuracy', options=['1', '2', '3', '0']),
+            Choice('word_present', options=['0', '1']),
+            Choice('correct_wordform', options=['0', '1']),
+            Choice('speaker', options=['A', 'C']),
+            Choice('addressee', options=['C', 'O']),
+            Choice('checked', options=['0', '1']),
+        ],
+        'modes': Choice('mode', options=['skip_prev', 'prev', 'next', 'skip_next']),
+        'mode': request.query.getunicode('mode', 'next'),
     }
 
 
@@ -122,17 +138,37 @@ def annotate_post(fileid):
         btl.redirect('/login')
     f = files.load_file(fileid)
     if f:
-        annotation = request.forms.getunicode('annotation', '').strip()
-        if annotation == '':
-            btl.redirect('/annotate/{}'.format(fileid))
-        f.annotation = annotation
-        first_save = not f.complete
+        f.audio_quality = int(request.forms.getunicode('audio_quality'))
+        f.onset_accuracy = int(request.forms.getunicode('onset_accuracy'))
+        f.offset_accuracy = int(request.forms.getunicode('offset_accuracy'))
+        f.word_present = int(request.forms.getunicode('word_present'))
+        f.correct_wordform = int(request.forms.getunicode('correct_wordform'))
+        f.speaker = request.forms.getunicode('speaker')
+        f.addressee = request.forms.getunicode('addressee')
+        f.checked = int(request.forms.getunicode('checked'))
+        first_save = not f.checked_at
         f.save(name)
         if first_save and f.id % annotate.BACKUP_EVERY_N == 0:
             annotate.backup_database()
     else:
         btl.redirect('/annotate')
-    btl.redirect('/annotate/{}'.format(fileid+1))
+    mode = request.forms.getunicode('mode')
+    f = next_file_by_mode(fileid, mode)
+    if f is None:
+        btl.redirect('/logged-in')
+    else:
+        btl.redirect(f'/annotate/{f.id}?mode={mode}')
+
+
+def next_file_by_mode(fileid, mode):
+    if mode == 'skip_prev':
+        return files.prev_unchecked(fileid) or files.last_unchecked()
+    elif mode == 'prev':
+        return files.around(fileid)['prev']
+    elif mode == 'next':
+        return files.around(fileid)['next']
+    else:
+        return files.next_unchecked(fileid) or files.next_unchecked(0)
 
 
 @app.get('/static/<filepath:path>')

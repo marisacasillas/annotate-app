@@ -6,12 +6,18 @@
 
 % rebase('base.tpl', title=_('Work Summary'))
 <div class="panel" id="logged-in">
-  <span id="name">{{name.upper()}}</span>
-  <table id="stats">
-    <tr><td>{{stats['user_today']}}</td><td>{{msg_complete_today}}</td></tr>
-    <tr><td>{{stats['user_complete']}}</td><td>{{msg_complete_total}}</td></tr>
-    <tr><td>{{stats['remaining']}}</td><td>{{msg_remaining}}</td></tr>
-  </table>
-  <a href="/annotate" class="button" id="next">{{msg_begin}}</a>
-  <a href="/logout" class="button" id="exit">{{msg_exit}}</a>
+  <div class="context">
+    <div><a href="/logout" class="nav" id="exit">{{msg_exit}}</a></div>
+    <div id="name">{{name.upper()}}</div>
+  </div>
+
+  <div style="width:100%">
+    <table id="stats">
+      <tr><td>{{stats['user_today']}}</td><td>{{msg_complete_today}}</td></tr>
+      <tr><td>{{stats['user_complete']}}</td><td>{{msg_complete_total}}</td></tr>
+      <tr><td>{{stats['remaining']}}</td><td>{{msg_remaining}}</td></tr>
+    </table>
+
+    <p><a href="/annotate" class="button" id="next" autofocus>{{msg_begin}}</a></p>
+  </div>
 </div>
