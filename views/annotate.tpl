@@ -50,7 +50,7 @@
 
   <form method="post" id="annotation-form">
     <div id="player"
-     data-source="/static/snippets/{{curr.name}}.mp3">
+     data-source="/static/snippets/{{curr.name}}.wav">
       <button type="button" id="playpause"><span class="icon-play"></span></button>
       <button type="button" id="reset"><span class="icon-first"></span></button>
       <div id="progress-bar"><div id="progress"></div></div>

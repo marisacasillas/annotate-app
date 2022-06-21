@@ -62,7 +62,7 @@ def populate_users(cur):
 def populate_files(cur, transcription_csv_path):
     def files():
         for tr in iter_transcriptions(transcription_csv_path):
-            if not os.path.isfile(f"static/snippets/{tr['filename']}"):
+            if not os.path.isfile(f"static/snippets/{tr['filename']}.wav"):
                 raise FileNotFoundError(tr['filename'])
             without_ext = os.path.splitext(tr['filename'])[0]
             yield (without_ext, tr['transcription'], tr['word'])
