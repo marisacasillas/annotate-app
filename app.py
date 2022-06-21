@@ -120,7 +120,7 @@ def annotate_get(fileid):
             Choice('offset_accuracy', options=['1', '2', '3', '0']),
             Choice('word_present', options=['0', '1']),
             Choice('correct_wordform', options=['0', '1']),
-            Choice('speaker', options=['A', 'C']),
+            Choice('correct_speaker', options=['0', '1']),
             Choice('addressee', options=['C', 'O']),
             Choice('checked', options=['0', '1']),
         ],
@@ -143,7 +143,7 @@ def annotate_post(fileid):
         f.offset_accuracy = int(request.forms.getunicode('offset_accuracy'))
         f.word_present = int(request.forms.getunicode('word_present'))
         f.correct_wordform = int(request.forms.getunicode('correct_wordform'))
-        f.speaker = request.forms.getunicode('speaker')
+        f.correct_speaker = request.forms.getunicode('correct_speaker')
         f.addressee = request.forms.getunicode('addressee')
         f.checked = int(request.forms.getunicode('checked'))
         first_save = not f.checked_at

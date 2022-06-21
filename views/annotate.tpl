@@ -12,7 +12,7 @@
 %   offset_accuracy = _('Offset Accuracy'),
 %   word_present = _('Word Present'),
 %   correct_wordform = _('Correct Wordform'),
-%   speaker = _('Speaker'),
+%   correct_speaker = _('Correct Speaker'),
 %   addressee = _('Addressee'),
 %   checked = _('Checked'),
 % )

@@ -37,7 +37,7 @@ def create_database(transcription_csv_path):
             `offset_accuracy` INTEGER NOT NULL DEFAULT 1,
             `word_present` BOOL NOT NULL DEFAULT 1,
             `correct_wordform` BOOL NOT NULL DEFAULT 1,
-            `speaker` CHARACTER(1) NOT NULL DEFAULT 'A',
+            `correct_speaker` BOOL NOT NULL DEFAULT 1,
             `addressee` CHARACTER(1) NOT NULL DEFAULT 'C',
             `checked` BOOL NOT NULL DEFAULT 0,
             `checked_at` TIMESTAMP,
@@ -86,12 +86,12 @@ def export_files_to_csv(fh):
     writer = csv.writer(fh)
     writer.writerow(['user', 'checked', 'checked_at', 'saved_at', 'filename', 'transcription',
         'word', 'audio_quality', 'onset_accuracy', 'offset_accuracy', 'word_present',
-        'correct_wordform', 'speaker', 'addressee',
+        'correct_wordform', 'correct_speaker', 'addressee',
         ])
     for f in iter_files():
         r = [f.user, f.checked, f.checked_at, f.saved_at, f.name, f.transcription, f.word,
                 f.audio_quality, f.onset_accuracy, f.offset_accuracy, f.word_present,
-                f.correct_wordform, f.speaker, f.addressee]
+                f.correct_wordform, f.correct_speaker, f.addressee]
         writer.writerow(r)
 
 

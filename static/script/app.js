@@ -109,7 +109,7 @@
     var $offset = document.querySelector('[name="offset_accuracy"]')
     var $present = document.querySelector('[name="word_present"]')
     var $wordform = document.querySelector('[name="correct_wordform"]')
-    var $speaker = document.querySelector('[name="speaker"]')
+    var $speaker = document.querySelector('[name="correct_speaker"]')
     var $addressee = document.querySelector('[name="addressee"]')
     var $checked = document.querySelector('[name="checked"]')
 

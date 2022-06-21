@@ -57,7 +57,7 @@ msgid "Correct Wordform"
 msgstr ""
 
 #: views/annotate.tpl:15
-msgid "Speaker"
+msgid "Correct Speaker"
 msgstr ""
 
 #: views/annotate.tpl:16

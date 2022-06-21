@@ -15,7 +15,7 @@ class File(object):
         self.offset_accuracy = row['offset_accuracy']
         self.word_present = row['word_present']
         self.correct_wordform = row['correct_wordform']
-        self.speaker = row['speaker']
+        self.correct_speaker = row['correct_speaker']
         self.addressee = row['addressee']
         self.checked = int(row['checked'])
         self.checked_at = row['checked_at']
@@ -35,7 +35,7 @@ class File(object):
                     offset_accuracy = ?,
                     word_present = ?,
                     correct_wordform = ?,
-                    speaker = ?,
+                    correct_speaker = ?,
                     addressee = ?,
                     checked = ?,
                     checked_at = {update_checked_at},
@@ -44,7 +44,7 @@ class File(object):
                 WHERE `id` = ?
             """
             p = (self.audio_quality, self.onset_accuracy, self.offset_accuracy, self.word_present,
-                    self.correct_wordform, self.speaker, self.addressee, self.checked, user,
+                    self.correct_wordform, self.correct_speaker, self.addressee, self.checked, user,
                     self.id)
             db.execute(q, p)
             self.user = user
