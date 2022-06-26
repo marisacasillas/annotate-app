@@ -115,9 +115,9 @@ def annotate_get(fileid):
         'stats': files.user_stats(name),
         'context': context,
         'choices': [
-            Choice('audio_quality', options=['1', '2', '3', '0']),
-            Choice('onset_accuracy', options=['1', '2', '3', '0']),
-            Choice('offset_accuracy', options=['1', '2', '3', '0']),
+            Choice('audio_usable', options=['0', '1']),
+            Choice('audio_exclusion', options=['Masked by noise', 'Overlapping speech', 'Missing onset', 
+            'Missing offset', 'Clip includes more than the target utterance', 'NA']),
             Choice('word_present', options=['0', '1']),
             Choice('correct_wordform', options=['0', '1']),
             Choice('correct_speaker', options=['0', '1']),
@@ -138,12 +138,11 @@ def annotate_post(fileid):
         btl.redirect('/login')
     f = files.load_file(fileid)
     if f:
-        f.audio_quality = int(request.forms.getunicode('audio_quality'))
-        f.onset_accuracy = int(request.forms.getunicode('onset_accuracy'))
-        f.offset_accuracy = int(request.forms.getunicode('offset_accuracy'))
+        f.audio_usable = int(request.forms.getunicode('audio_usable'))
+        f.audio_exclusion = request.forms.getunicode('audio_exclusion')
         f.word_present = int(request.forms.getunicode('word_present'))
         f.correct_wordform = int(request.forms.getunicode('correct_wordform'))
-        f.correct_speaker = request.forms.getunicode('correct_speaker')
+        f.correct_speaker = int(request.forms.getunicode('correct_speaker'))
         f.addressee = request.forms.getunicode('addressee')
         f.checked = int(request.forms.getunicode('checked'))
         first_save = not f.checked_at

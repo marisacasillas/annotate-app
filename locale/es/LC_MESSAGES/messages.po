@@ -37,56 +37,52 @@ msgid "Exit"
 msgstr "Salir"
 
 #: views/annotate.tpl:10
-msgid "Audio Quality"
+msgid "Audio Usable"
 msgstr ""
 
 #: views/annotate.tpl:11
-msgid "Onset Accuracy"
+msgid "Audio Exclusion Reason"
 msgstr ""
 
 #: views/annotate.tpl:12
-msgid "Offset Accuracy"
-msgstr ""
-
-#: views/annotate.tpl:13
 msgid "Word Present"
 msgstr ""
 
-#: views/annotate.tpl:14
+#: views/annotate.tpl:13
 msgid "Correct Wordform"
 msgstr ""
 
-#: views/annotate.tpl:15
+#: views/annotate.tpl:14
 msgid "Correct Speaker"
 msgstr ""
 
-#: views/annotate.tpl:16
+#: views/annotate.tpl:15
 msgid "Addressee"
 msgstr ""
 
-#: views/annotate.tpl:17
+#: views/annotate.tpl:16
 msgid "Checked"
 msgstr ""
 
-#: views/annotate.tpl:21
+#: views/annotate.tpl:20
 #, fuzzy
 msgid "Skip Previous"
 msgstr "Último"
 
-#: views/annotate.tpl:22
+#: views/annotate.tpl:21
 msgid "Previous"
 msgstr "Último"
 
-#: views/annotate.tpl:23
+#: views/annotate.tpl:22
 msgid "Next"
 msgstr "Próximo"
 
-#: views/annotate.tpl:24
+#: views/annotate.tpl:23
 #, fuzzy
 msgid "Skip Next"
 msgstr "Próximo"
 
-#: views/annotate.tpl:29
+#: views/annotate.tpl:28
 msgid "Annotate"
 msgstr "Anotar"
 

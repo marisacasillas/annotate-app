@@ -104,9 +104,8 @@
   function setupInteractions(player) {
     var $prev = document.querySelector('#prev');
     var $save = document.querySelector('#save');
-    var $quality = document.querySelector('[name="audio_quality"]')
-    var $onset = document.querySelector('[name="onset_accuracy"]')
-    var $offset = document.querySelector('[name="offset_accuracy"]')
+    var $usable = document.querySelector('[name="audio_usable"]')
+    var $exclusion = document.querySelector('[name="audio_exclusion"]')
     var $present = document.querySelector('[name="word_present"]')
     var $wordform = document.querySelector('[name="correct_wordform"]')
     var $speaker = document.querySelector('[name="correct_speaker"]')
@@ -123,9 +122,8 @@
       var key = ev.key.toLowerCase();
       switch (key) {
         case '/': player.togglePlay(); break;
-        case 'q': focus($quality); break;
-        case 'n': focus($onset); break;
-        case 'f': focus($offset); break;
+        case 'u': focus($usable); break;
+        case 'e': focus($exclusion); break;
         case 'p': focus($present); break;
         case 'w': focus($wordform); break;
         case 's': focus($speaker); break;

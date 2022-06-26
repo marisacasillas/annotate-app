@@ -7,9 +7,8 @@
 % msg_exit = _('Exit')
 
 % choice_labels = dict(
-%   audio_quality = _('Audio Quality'),
-%   onset_accuracy = _('Onset Accuracy'),
-%   offset_accuracy = _('Offset Accuracy'),
+%   audio_usable = _('Usable Audio'),
+%   audio_exclusion = _('Audio Exclusion Reason'),
 %   word_present = _('Word Present'),
 %   correct_wordform = _('Correct Wordform'),
 %   correct_speaker = _('Correct Speaker'),

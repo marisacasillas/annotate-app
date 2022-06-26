@@ -10,9 +10,8 @@ class File(object):
         self.name = row['name']
         self.transcription = row['transcription']
         self.word = row['word']
-        self.audio_quality = row['audio_quality']
-        self.onset_accuracy = row['onset_accuracy']
-        self.offset_accuracy = row['offset_accuracy']
+        self.audio_usable = row['audio_usable']
+        self.audio_exclusion = row['audio_exclusion']
         self.word_present = row['word_present']
         self.correct_wordform = row['correct_wordform']
         self.correct_speaker = row['correct_speaker']
@@ -30,9 +29,8 @@ class File(object):
                 update_checked_at = 'NULL'
             q = f"""
                 UPDATE `files` SET
-                    audio_quality = ?,
-                    onset_accuracy = ?,
-                    offset_accuracy = ?,
+                    audio_usable = ?,
+                    audio_exclusion = ?,
                     word_present = ?,
                     correct_wordform = ?,
                     correct_speaker = ?,
@@ -43,7 +41,7 @@ class File(object):
                     userid = (SELECT `id` FROM `users` WHERE `name` = ?)
                 WHERE `id` = ?
             """
-            p = (self.audio_quality, self.onset_accuracy, self.offset_accuracy, self.word_present,
+            p = (self.audio_usable, self.audio_exclusion, self.word_present,
                     self.correct_wordform, self.correct_speaker, self.addressee, self.checked, user,
                     self.id)
             db.execute(q, p)
