@@ -87,16 +87,16 @@ msgid "Annotate"
 msgstr "Anotar"
 
 #: views/login.tpl:1
-msgid "Username"
-msgstr "Nombre de Usuario"
+msgid "Annotator Initials"
+msgstr "Iniciales del anotador"
 
 #: views/login.tpl:2 views/login.tpl:5
 msgid "Login"
 msgstr "Entrar"
 
 #: views/login.tpl:3
-msgid "Enter a valid username"
-msgstr "Entra un nombre de usuario válido"
+msgid "Enter a your initials"
+msgstr "Entra los iniciales del anotador"
 
 #: views/logged_in.tpl:2
 msgid "Completed Total"

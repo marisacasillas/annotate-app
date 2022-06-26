@@ -15,7 +15,7 @@ class FileNotFoundError(IOError):
 
 
 def user_exists(name):
-    return name.lower() in USERS
+    return name in USERS
 
 
 def create_database(transcription_csv_path):

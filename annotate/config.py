@@ -1,4 +1,6 @@
 from os import path
+from itertools import product
+from string import ascii_uppercase
 
 DB_FILE = path.join('var', 'database.db')
 
@@ -8,7 +10,9 @@ DB_FILE = path.join('var', 'database.db')
 DB_BACKUP_DIR = path.join('var', 'backups')
 BACKUP_EVERY_N = 500
 
-USERS = set([u'usuario1', u'usuario2'])
+initials = [''.join(i) for i in product(ascii_uppercase, repeat = 2)] + [''.join(i) for i in product(ascii_uppercase, repeat = 3)] 
+
+USERS = set(initials)
 
 # A priority list of languages to use for UI messages. The first language for
 # which a message is available will be used (no matter the locale, English is
