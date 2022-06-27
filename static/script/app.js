@@ -127,8 +127,8 @@
         case 'p': focus($present); break;
         case 'w': focus($wordform); break;
         case 's': focus($speaker); break;
-        case 'd': focus($addressee); break;
-        case 'x': focus($checked); break;
+        case 'a': focus($addressee); break;
+        case 'c': focus($checked); break;
         case 'arrowleft':
           if (ev.shiftKey) {
             $prev.click();
