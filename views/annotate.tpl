@@ -2,6 +2,7 @@
 % msg_remaining = _('Remaining')
 % msg_transcription = _('Transcription')
 % msg_word = _('Word')
+% msg_speaker = _('Speaker')
 % msg_save = _('Save')
 % msg_and = _('and')
 % msg_exit = _('Exit')
@@ -76,6 +77,7 @@
 
     <p id="transcription"><strong>{{msg_transcription}}:</strong> {{curr.transcription}}</p>
     <p id="word"><strong>{{msg_word}}:</strong> {{curr.word}}</p>
+    <p id="speaker"><strong>{{msg_speaker}}:</strong> {{curr.speaker}}</p>
 
     <p>
       <input type="submit" class="button" id="save" value="{{msg_save}}">

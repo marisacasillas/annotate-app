@@ -32,6 +32,7 @@ def create_database(transcription_csv_path):
             `name` TEXT NOT NULL,
             `transcription` TEXT NOT NULL,
             `word` TEXT NOT NULL,
+            `speaker` TEXT NOT NULL,
             `audio_usable` INTEGER NOT NULL DEFAULT 1,
             `audio_exclusion` CHARACTER(44) NOT NULL DEFAULT 'NA',
             `word_present` BOOL NOT NULL DEFAULT 1,
@@ -64,8 +65,8 @@ def populate_files(cur, transcription_csv_path):
             if not os.path.isfile(f"static/snippets/{tr['filename']}.wav"):
                 raise FileNotFoundError(tr['filename'])
             without_ext = os.path.splitext(tr['filename'])[0]
-            yield (without_ext, tr['transcription'], tr['word'])
-    q = """INSERT INTO `files` (`name`, `transcription`, `word`) VALUES (?, ?, ?)"""
+            yield (without_ext, tr['transcription'], tr['word'], tr['speaker'])
+    q = """INSERT INTO `files` (`name`, `transcription`, `word`, `speaker`) VALUES (?, ?, ?, ?)"""
     for chunk in chunk_iter(files(), 500):
         cur.executemany(q, chunk)
 
@@ -84,15 +85,14 @@ def backup_database():
 def export_files_to_csv(fh):
     writer = csv.writer(fh)
     writer.writerow(['user', 'checked', 'checked_at', 'saved_at', 'filename', 'transcription',
-        'word', 'audio_usable', 'audio_exclusion', 'word_present',
+        'word', 'speaker', 'audio_usable', 'audio_exclusion', 'word_present',
         'correct_wordform', 'correct_speaker', 'addressee',
         ])
     for f in iter_files():
         r = [f.user, f.checked, f.checked_at, f.saved_at, f.name, f.transcription, f.word,
-                f.audio_usable, f.audio_exclusion, f.word_present,
+                f.speaker, f.audio_usable, f.audio_exclusion, f.word_present,
                 f.correct_wordform, f.correct_speaker, f.addressee]
         writer.writerow(r)
-
 
 def chunk_iter(itr, size):
     """Chunk an iterable blocks of "size" each, except for the last chunk,

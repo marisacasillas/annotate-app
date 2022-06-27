@@ -10,6 +10,7 @@ class File(object):
         self.name = row['name']
         self.transcription = row['transcription']
         self.word = row['word']
+        self.speaker = row['speaker']
         self.audio_usable = row['audio_usable']
         self.audio_exclusion = row['audio_exclusion']
         self.word_present = row['word_present']

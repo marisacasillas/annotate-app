@@ -25,64 +25,68 @@ msgid "Word"
 msgstr ""
 
 #: views/annotate.tpl:5
-msgid "Save"
+msgid "Speaker"
 msgstr ""
 
 #: views/annotate.tpl:6
+msgid "Save"
+msgstr ""
+
+#: views/annotate.tpl:7
 msgid "and"
 msgstr ""
 
-#: views/annotate.tpl:7 views/logged_in.tpl:5
+#: views/annotate.tpl:8 views/logged_in.tpl:6
 msgid "Exit"
 msgstr "Salir"
 
-#: views/annotate.tpl:10
+#: views/annotate.tpl:11
 msgid "Audio Usable"
 msgstr ""
 
-#: views/annotate.tpl:11
+#: views/annotate.tpl:12
 msgid "Audio Exclusion Reason"
 msgstr ""
 
-#: views/annotate.tpl:12
+#: views/annotate.tpl:13
 msgid "Word Present"
 msgstr ""
 
-#: views/annotate.tpl:13
+#: views/annotate.tpl:14
 msgid "Correct Wordform"
 msgstr ""
 
-#: views/annotate.tpl:14
+#: views/annotate.tpl:15
 msgid "Correct Speaker"
 msgstr ""
 
-#: views/annotate.tpl:15
+#: views/annotate.tpl:16
 msgid "Addressee"
 msgstr ""
 
-#: views/annotate.tpl:16
+#: views/annotate.tpl:17
 msgid "Checked"
 msgstr ""
 
-#: views/annotate.tpl:20
+#: views/annotate.tpl:21
 #, fuzzy
 msgid "Skip Previous"
 msgstr "Último"
 
-#: views/annotate.tpl:21
+#: views/annotate.tpl:22
 msgid "Previous"
 msgstr "Último"
 
-#: views/annotate.tpl:22
+#: views/annotate.tpl:23
 msgid "Next"
 msgstr "Próximo"
 
-#: views/annotate.tpl:23
+#: views/annotate.tpl:24
 #, fuzzy
 msgid "Skip Next"
 msgstr "Próximo"
 
-#: views/annotate.tpl:28
+#: views/annotate.tpl:29
 msgid "Annotate"
 msgstr "Anotar"
 
@@ -90,7 +94,7 @@ msgstr "Anotar"
 msgid "Annotator Initials"
 msgstr "Iniciales del anotador"
 
-#: views/login.tpl:2 views/login.tpl:5
+#: views/login.tpl:2 views/login.tpl:6
 msgid "Login"
 msgstr "Entrar"
 
@@ -106,6 +110,6 @@ msgstr "Has Terminado en Total"
 msgid "Begin Annotating"
 msgstr "Empezar Anotaciones"
 
-#: views/logged_in.tpl:7
+#: views/logged_in.tpl:8
 msgid "Work Summary"
 msgstr "Sumario de Trabajo"
