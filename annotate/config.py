@@ -18,4 +18,4 @@ USERS = set(initials)
 # which a message is available will be used (no matter the locale, English is
 # always the final fallback). Use a code matching one of the directory names
 # directly under ./locale/
-LANGUAGES = ['es']
+LANGUAGES = ['en']
