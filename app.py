@@ -116,8 +116,9 @@ def annotate_get(fileid):
         'context': context,
         'choices': [
             Choice('audio_usable', options=['0', '1']),
-            Choice('audio_exclusion', options=['Masked by noise', 'Overlapping speech', 'Missing onset', 
-            'Missing offset', 'Clip includes more than the target utterance', 'NA']),
+            Choice('audio_exclusion', options=['Noise', 'Speech',  'Missing', 'Extra', 'NA']),
+            Choice('onset_quality', options=['0', '1', '2', '3', '4', '+']),
+            Choice('offset_quality', options=['0', '1', '2', '3', '4', '+']),
             Choice('word_present', options=['0', '1']),
             Choice('correct_wordform', options=['0', '1']),
             Choice('correct_speaker', options=['0', '1']),
@@ -140,6 +141,8 @@ def annotate_post(fileid):
     if f:
         f.audio_usable = int(request.forms.getunicode('audio_usable'))
         f.audio_exclusion = request.forms.getunicode('audio_exclusion')
+        f.onset_quality = request.forms.getunicode('onset_quality')
+        f.offset_quality = request.forms.getunicode('offset_quality')
         f.word_present = int(request.forms.getunicode('word_present'))
         f.correct_wordform = int(request.forms.getunicode('correct_wordform'))
         f.correct_speaker = int(request.forms.getunicode('correct_speaker'))

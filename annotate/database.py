@@ -34,7 +34,9 @@ def create_database(transcription_csv_path):
             `word` TEXT NOT NULL,
             `speaker` TEXT NOT NULL,
             `audio_usable` INTEGER NOT NULL DEFAULT 1,
-            `audio_exclusion` CHARACTER(44) NOT NULL DEFAULT 'NA',
+            `audio_exclusion` CHARACTER(7) NOT NULL DEFAULT 'NA',
+            `onset_quality` INTEGER NOT NULL DEFAULT 0,
+            `offset_quality` INTEGER NOT NULL DEFAULT 0,
             `word_present` BOOL NOT NULL DEFAULT 1,
             `correct_wordform` BOOL NOT NULL DEFAULT 1,
             `correct_speaker` BOOL NOT NULL DEFAULT 1,
@@ -85,13 +87,13 @@ def backup_database():
 def export_files_to_csv(fh):
     writer = csv.writer(fh)
     writer.writerow(['user', 'checked', 'checked_at', 'saved_at', 'filename', 'transcription',
-        'word', 'speaker', 'audio_usable', 'audio_exclusion', 'word_present',
-        'correct_wordform', 'correct_speaker', 'addressee',
+        'word', 'speaker', 'audio_usable', 'audio_exclusion', 'onset_quality', 'offset_quality',
+        'word_present', 'correct_wordform', 'correct_speaker', 'addressee',
         ])
     for f in iter_files():
         r = [f.user, f.checked, f.checked_at, f.saved_at, f.name, f.transcription, f.word,
-                f.speaker, f.audio_usable, f.audio_exclusion, f.word_present,
-                f.correct_wordform, f.correct_speaker, f.addressee]
+                f.speaker, f.audio_usable, f.audio_exclusion, f.onset_quality, f.offset_quality,
+                f.word_present, f.correct_wordform, f.correct_speaker, f.addressee]
         writer.writerow(r)
 
 def chunk_iter(itr, size):

@@ -106,6 +106,8 @@
     var $save = document.querySelector('#save');
     var $usable = document.querySelector('[name="audio_usable"]')
     var $exclusion = document.querySelector('[name="audio_exclusion"]')
+    var $onset = document.querySelector('[name="onset_quality"]')
+    var $offset = document.querySelector('[name="offset_quality"]')
     var $present = document.querySelector('[name="word_present"]')
     var $wordform = document.querySelector('[name="correct_wordform"]')
     var $speaker = document.querySelector('[name="correct_speaker"]')
@@ -124,6 +126,8 @@
         case '/': player.togglePlay(); break;
         case 'u': focus($usable); break;
         case 'e': focus($exclusion); break;
+        case 'n': focus($onset); break;
+        case 'f': focus($offset); break;
         case 'p': focus($present); break;
         case 'w': focus($wordform); break;
         case 's': focus($speaker); break;

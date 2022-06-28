@@ -10,6 +10,8 @@
 % choice_labels = dict(
 %   audio_usable = _('Usable Audio'),
 %   audio_exclusion = _('Audio Exclusion Reason'),
+%   onset_quality = _('Onset Quality'),
+%   offset_quality = _('Offset Quality'),
 %   word_present = _('Word Present'),
 %   correct_wordform = _('Correct Wordform'),
 %   correct_speaker = _('Correct Speaker'),
