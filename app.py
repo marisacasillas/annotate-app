@@ -117,8 +117,8 @@ def annotate_get(fileid):
         'choices': [
             Choice('audio_usable', options=['0', '1']),
             Choice('audio_exclusion', options=['Noise', 'Speech',  'Missing', 'Extra', 'NA']),
-            Choice('onset_quality', options=['0', '1', '2', '3', '4', '+']),
-            Choice('offset_quality', options=['0', '1', '2', '3', '4', '+']),
+            Choice('onset_quality', options=['0', '1-', '2-', '3-', '4-', '+']),
+            Choice('offset_quality', options=['0', '1-', '2-', '3-', '4-', '+']),
             Choice('word_present', options=['0', '1']),
             Choice('correct_wordform', options=['0', '1']),
             Choice('correct_speaker', options=['0', '1']),
