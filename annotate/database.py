@@ -64,10 +64,10 @@ def populate_users(cur):
 def populate_files(cur, transcription_csv_path):
     def files():
         for tr in iter_transcriptions(transcription_csv_path):
-            if not os.path.isfile(f"static/snippets/{tr['filename']}.wav"):
+            if not os.path.isfile(f"static/snippets/{tr['filename']}"):
                 raise FileNotFoundError(tr['filename'])
-            without_ext = os.path.splitext(tr['filename'])[0]
-            yield (without_ext, tr['transcription'], tr['word'], tr['speaker'])
+            with_ext = tr['filename']
+            yield (with_ext, tr['transcription'], tr['word'], tr['speaker'])
     q = """INSERT INTO `files` (`name`, `transcription`, `word`, `speaker`) VALUES (?, ?, ?, ?)"""
     for chunk in chunk_iter(files(), 500):
         cur.executemany(q, chunk)
