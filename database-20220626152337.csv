@@ -1,4 +1,0 @@
-user,checked,checked_at,saved_at,filename,transcription,word,audio_usable,audio_exclusion,word_present,correct_wordform,correct_speaker,addressee
-usuario1,1,2022-06-26 15:22:37,2022-06-26 15:22:37,child-bathroom1,me have go bathroom too,bathroom,0,Masked by noise,1,1,1,C
-usuario1,1,2022-06-26 15:22:44,2022-06-26 15:22:44,child-bathroom2,xxx bathroom bathroom,bathroom,0,Masked by noise,1,1,1,C
-usuario1,1,2022-06-26 15:22:48,2022-06-26 15:22:48,child-bathroom3,he's having a conversation in the bathroom,bathroom,1,NA,1,1,1,C
