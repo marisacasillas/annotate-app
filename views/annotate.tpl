@@ -8,14 +8,16 @@
 % msg_exit = _('Exit')
 
 % choice_labels = dict(
+%   correct_utterance = _('Correct Utterance'),
+%   word_present = _('Word Present'),
+%   correct_wordform = _('Correct Wordform'),
+%   correct_context = _('Correct Context'),
+%   correct_speaker = _('Correct Speaker'),
+%   addressee = _('Addressee'),
 %   audio_usable = _('Usable Audio'),
 %   audio_exclusion = _('Audio Exclusion Reason'),
 %   onset_quality = _('Onset Missing Syllables'),
 %   offset_quality = _('Offset Missing Syllables'),
-%   word_present = _('Word Present'),
-%   correct_wordform = _('Correct Wordform'),
-%   correct_speaker = _('Correct Speaker'),
-%   addressee = _('Addressee'),
 %   checked = _('Checked'),
 % )
 

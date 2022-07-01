@@ -11,12 +11,14 @@ class File(object):
         self.transcription = row['transcription']
         self.word = row['word']
         self.speaker = row['speaker']
+        self.correct_utterance = row['correct_utterance']
         self.audio_usable = row['audio_usable']
         self.audio_exclusion = row['audio_exclusion']
         self.onset_quality = row['onset_quality']
         self.offset_quality = row['offset_quality']
         self.word_present = row['word_present']
         self.correct_wordform = row['correct_wordform']
+        self.correct_context = row['correct_context']
         self.correct_speaker = row['correct_speaker']
         self.addressee = row['addressee']
         self.checked = int(row['checked'])
@@ -32,12 +34,14 @@ class File(object):
                 update_checked_at = 'NULL'
             q = f"""
                 UPDATE `files` SET
+                    correct_utterance = ?,
                     audio_usable = ?,
                     audio_exclusion = ?,
                     onset_quality = ?,
                     offset_quality = ?,
                     word_present = ?,
                     correct_wordform = ?,
+                    correct_context = ?,
                     correct_speaker = ?,
                     addressee = ?,
                     checked = ?,
@@ -46,8 +50,8 @@ class File(object):
                     userid = (SELECT `id` FROM `users` WHERE `name` = ?)
                 WHERE `id` = ?
             """
-            p = (self.audio_usable, self.audio_exclusion, self.onset_quality, self.offset_quality, self.word_present,
-                    self.correct_wordform, self.correct_speaker, self.addressee, self.checked, user,
+            p = (self.correct_utterance, self.audio_usable, self.audio_exclusion, self.onset_quality, self.offset_quality, self.word_present,
+                    self.correct_wordform, self.correct_context, self.correct_speaker, self.addressee, self.checked, user,
                     self.id)
             db.execute(q, p)
             self.user = user

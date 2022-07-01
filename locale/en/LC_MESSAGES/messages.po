@@ -41,15 +41,19 @@ msgid "Exit"
 msgstr ""
 
 #: views/annotate.tpl:11
-msgid "Audio Usable"
+msgid "Correct Utterance"
 msgstr ""
 
 #: views/annotate.tpl:12
-msgid "Audio Exclusion Reason"
+msgid "Word Present"
 msgstr ""
 
 #: views/annotate.tpl:13
-msgid "Word Present"
+msgid "Audio Usable"
+msgstr ""
+
+#: views/annotate.tpl:14
+msgid "Audio Exclusion Reason"
 msgstr ""
 
 #: views/annotate.tpl:14
@@ -57,14 +61,18 @@ msgid "Correct Wordform"
 msgstr ""
 
 #: views/annotate.tpl:15
-msgid "Correct Speaker"
+msgid "Correct Context"
 msgstr ""
 
 #: views/annotate.tpl:16
-msgid "Addressee"
+msgid "Correct Speaker"
 msgstr ""
 
 #: views/annotate.tpl:17
+msgid "Addressee"
+msgstr ""
+
+#: views/annotate.tpl:18
 msgid "Checked"
 msgstr ""
 

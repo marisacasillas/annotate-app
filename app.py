@@ -115,12 +115,14 @@ def annotate_get(fileid):
         'stats': files.user_stats(name),
         'context': context,
         'choices': [
-            Choice('audio_usable', options=['0', '1']),
-            Choice('audio_exclusion', options=['Noise', 'Speech',  'Missing', 'Extra', 'NA']),
-            Choice('onset_quality', options=['0', '1-', '2-', '3-', '4-', '+']),
-            Choice('offset_quality', options=['0', '1-', '2-', '3-', '4-', '+']),
+            Choice('correct_utterance', options=['0', '1']),
             Choice('word_present', options=['0', '1']),
+            Choice('audio_usable', options=['0', '1']),
+            Choice('audio_exclusion', options=['Microphone', 'Outside', 'Speech', 'Noise-Other', 'Extra-Vocalization', 'NA']),
+            Choice('onset_quality', options=['0', '1-', '2-', '3-', '4-', '+', 'S']),
+            Choice('offset_quality', options=['0', '1-', '2-', '3-', '4-', '+', 'S']),
             Choice('correct_wordform', options=['0', '1']),
+            Choice('correct_context', options=['0', '1']),
             Choice('correct_speaker', options=['0', '1']),
             Choice('addressee', options=['C', 'O']),
             Choice('checked', options=['0', '1']),
@@ -139,12 +141,14 @@ def annotate_post(fileid):
         btl.redirect('/login')
     f = files.load_file(fileid)
     if f:
+        f.correct_utterance = int(request.forms.getunicode('correct_utterance'))
+        f.word_present = int(request.forms.getunicode('word_present'))
         f.audio_usable = int(request.forms.getunicode('audio_usable'))
         f.audio_exclusion = request.forms.getunicode('audio_exclusion')
         f.onset_quality = request.forms.getunicode('onset_quality')
         f.offset_quality = request.forms.getunicode('offset_quality')
-        f.word_present = int(request.forms.getunicode('word_present'))
         f.correct_wordform = int(request.forms.getunicode('correct_wordform'))
+        f.correct_context = int(request.forms.getunicode('correct_context'))
         f.correct_speaker = int(request.forms.getunicode('correct_speaker'))
         f.addressee = request.forms.getunicode('addressee')
         f.checked = int(request.forms.getunicode('checked'))
