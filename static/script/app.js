@@ -104,12 +104,14 @@
   function setupInteractions(player) {
     var $prev = document.querySelector('#prev');
     var $save = document.querySelector('#save');
+    var $utterance = document.querySelector('[name="correct_utterance"]')
+    var $present = document.querySelector('[name="word_present"]')
     var $usable = document.querySelector('[name="audio_usable"]')
     var $exclusion = document.querySelector('[name="audio_exclusion"]')
     var $onset = document.querySelector('[name="onset_quality"]')
     var $offset = document.querySelector('[name="offset_quality"]')
-    var $present = document.querySelector('[name="word_present"]')
     var $wordform = document.querySelector('[name="correct_wordform"]')
+    var $context = document.querySelector('[name="correct_context"]')
     var $speaker = document.querySelector('[name="correct_speaker"]')
     var $addressee = document.querySelector('[name="addressee"]')
     var $checked = document.querySelector('[name="checked"]')
@@ -124,12 +126,14 @@
       var key = ev.key.toLowerCase();
       switch (key) {
         case '/': player.togglePlay(); break;
+        case 't': focus($utterance); break;
+        case 'p': focus($present); break;
         case 'u': focus($usable); break;
         case 'e': focus($exclusion); break;
         case 'n': focus($onset); break;
         case 'f': focus($offset); break;
-        case 'p': focus($present); break;
         case 'w': focus($wordform); break;
+        case 'x': focus($context); break;
         case 's': focus($speaker); break;
         case 'a': focus($addressee); break;
         case 'c': focus($checked); break;
